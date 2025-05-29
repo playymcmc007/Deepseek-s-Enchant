@@ -1,4 +1,4 @@
-# Deepseek-s-Enchant
+# Deepseek's Enchant
 一些由DeepSeek辅助制作的奇思妙想的附魔/Some whimsical enchantments developed with DeepSeek's assistance
 这是我使用DeepSeek制作的一个有关附魔的模组，我没有学过Java，模组的大部分内容是由DeepSeek制作的，不过附魔创意来自于我，包括现在这段话的英语版本也是由DeepSeek翻译的，模组内有10个以上的附魔，每一个都很与众不同，不过有一些附魔可能会导致破坏游戏平衡。
 
