@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "com.playymcmc007.DeepSeeksEnchant.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "deepseeksenchant.refmap.json",
+  "mixins": [
+    "LivingEntityMixin","TextureManagerMixin","FontRendererMixin"
+  ],
+  "client": [],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

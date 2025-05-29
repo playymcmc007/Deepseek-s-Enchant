@@ -1,0 +1,11 @@
+modLoader="javafml"
+loaderVersion="[47,)" # 对应1.20.1
+license="GPL-3.0"
+
+[[mods]]
+modId="deepseeksenchant"
+version="1.0.0"
+displayName="DeepSeek的附魔"
+authors=["DeepSeek","playymcmc007"]
+description="一些由DeepSeek辅助制作的奇思妙想的附魔"
+logoFile="assets/deepseeksenchant/icon.png"
