@@ -1,0 +1,9 @@
+{
+  "regurgitate": {
+    "subtitle": "subtitles.deepseeksenchant.regurgitate",
+    "sounds": [
+      "deepseeksenchant:custom/regurgitate1",
+      "deepseeksenchant:custom/regurgitate2"
+    ]
+  }
+}

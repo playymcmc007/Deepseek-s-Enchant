@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "deepseeksenchant.refmap.json",
   "mixins": [
-    "LivingEntityMixin","TextureManagerMixin","FontRendererMixin"
+    "LivingEntityMixin","TextureManagerMixin","FontRendererMixin","ItemStackMixin"
   ],
   "client": [],
   "server": [],

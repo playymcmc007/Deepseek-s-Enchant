@@ -1,5 +1,6 @@
 package com.playymcmc007.DeepSeeksEnchant.enchantment;
 
+import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -71,6 +72,9 @@ public class StrangeNoisesCurseEnchantment extends Enchantment {
         @SubscribeEvent
         // 玩家
         public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+            if (!EnchantmentToggleConfig.STRANGE_NOISES_ENABLED.get()) {
+                return;
+            }
             if (event.phase != TickEvent.Phase.END) return;
 
             Player player = event.player;
@@ -97,6 +101,9 @@ public class StrangeNoisesCurseEnchantment extends Enchantment {
         @SubscribeEvent
         // 生物
         public static void onLivingTick(LivingEvent.LivingTickEvent event) {
+            if (!EnchantmentToggleConfig.STRANGE_NOISES_ENABLED.get()) {
+                return;
+            }
             LivingEntity entity = event.getEntity();
             if (entity instanceof Player) return;
 

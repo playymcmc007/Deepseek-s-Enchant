@@ -1,5 +1,6 @@
 package com.playymcmc007.DeepSeeksEnchant.enchantment;
 
+import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -60,8 +61,12 @@ public class ModBlessingEnchantment extends Enchantment {
     }
     @Override
     public void doPostAttack(LivingEntity attacker, Entity target, int level) {
+        if (!EnchantmentToggleConfig.MODBLESSING_ENABLED.get()) {
+            super.doPostAttack(attacker, target, level);
+            return;
+        }
         if (!attacker.level().isClientSide()) {
-            int modCount = ModList.get().getMods().size() - 3;// minecraft、forge、模组本体
+            int modCount = ModList.get().getMods().size() - 3;
             modCount = Math.max(modCount, 0);
 
             float damageMultiplier = 1.0f + (level - 1) * 0.1f;

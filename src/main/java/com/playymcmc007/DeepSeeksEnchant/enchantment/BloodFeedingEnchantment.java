@@ -1,27 +1,21 @@
 package com.playymcmc007.DeepSeeksEnchant.enchantment;
 
-import net.minecraft.core.registries.Registries;
+import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Cat;
-import net.minecraft.world.entity.animal.Parrot;
 import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.util.Set;
 
 public class BloodFeedingEnchantment extends Enchantment {
 
@@ -102,6 +96,9 @@ public class BloodFeedingEnchantment extends Enchantment {
     public static class BloodFeedingEvents {
         @SubscribeEvent
         public static void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
+            if (!EnchantmentToggleConfig.BLOOD_FEEDING_ENABLED.get()) {
+                return;
+            }
             Player player = event.getEntity();
             ItemStack stack = event.getItemStack();
             Entity target = event.getTarget();

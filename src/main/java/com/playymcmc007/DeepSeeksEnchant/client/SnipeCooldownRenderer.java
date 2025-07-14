@@ -1,6 +1,7 @@
 package com.playymcmc007.DeepSeeksEnchant.client;
 
 import com.mojang.blaze3d.platform.Window;
+import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.nbt.CompoundTag;
@@ -23,6 +24,10 @@ public class SnipeCooldownRenderer {
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
+            if (!EnchantmentToggleConfig.SNIPE_ENABLED.get()) {
+                lastCoolingWeapon = null;
+                return;
+            }
             Player player = Minecraft.getInstance().player;
             if (player == null) return;
 
@@ -38,6 +43,10 @@ public class SnipeCooldownRenderer {
 
     @SubscribeEvent
     public static void onPreRender(RenderGuiOverlayEvent.Pre event) {
+        if (!EnchantmentToggleConfig.SNIPE_ENABLED.get()) {
+            lastCoolingWeapon = null;
+            return;
+        }
         if (event.getOverlay().id() == VanillaGuiOverlay.HOTBAR.id() &&
                 lastCoolingWeapon != null) {
         }

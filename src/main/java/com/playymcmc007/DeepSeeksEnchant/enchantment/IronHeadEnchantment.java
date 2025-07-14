@@ -1,5 +1,6 @@
 package com.playymcmc007.DeepSeeksEnchant.enchantment;
 
+import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -41,6 +42,9 @@ public class IronHeadEnchantment extends Enchantment {
 
         @SubscribeEvent
         public static void onPlayerTick(PlayerTickEvent event) {
+            if (!EnchantmentToggleConfig.IRON_HEAD_ENABLED.get()) {
+                return;
+            }
             Player player = event.player;
             Level world = player.level();
 

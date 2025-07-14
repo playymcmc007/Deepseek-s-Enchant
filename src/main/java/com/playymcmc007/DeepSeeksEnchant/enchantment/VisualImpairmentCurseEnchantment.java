@@ -1,5 +1,6 @@
 package com.playymcmc007.DeepSeeksEnchant.enchantment;
 
+import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -41,6 +42,9 @@ public class VisualImpairmentCurseEnchantment extends Enchantment {
 
     @OnlyIn(Dist.CLIENT)
     public static boolean isEffectActive() {
+        if (!EnchantmentToggleConfig.VISUAL_IMPAIRMENT_ENABLED.get()) {
+            return false;
+        }
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null) return false;
 

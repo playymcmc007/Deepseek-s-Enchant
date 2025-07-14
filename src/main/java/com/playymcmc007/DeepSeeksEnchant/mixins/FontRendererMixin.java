@@ -2,6 +2,7 @@ package com.playymcmc007.DeepSeeksEnchant.mixins;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.playymcmc007.DeepSeeksEnchant.client.AntiGlyphStateHandler;
 import com.playymcmc007.DeepSeeksEnchant.enchantment.AntiGlyphCurseEnchantment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -26,7 +27,7 @@ public abstract class FontRendererMixin {
             cancellable = true
     )
     private void onRenderText(CallbackInfoReturnable<Float> cir) {
-        if (AntiGlyphCurseEnchantment.enabled && Minecraft.getInstance().level != null) {
+        if (AntiGlyphStateHandler.isActive() && Minecraft.getInstance().level != null) {
             cir.setReturnValue(0.0F);
             cir.cancel();
         }
@@ -53,7 +54,7 @@ public abstract class FontRendererMixin {
             int packedLight,
             CallbackInfo ci
     ) {
-        if (AntiGlyphCurseEnchantment.enabled) {
+        if (AntiGlyphStateHandler.isActive()) {
             ci.cancel();
         }
     }

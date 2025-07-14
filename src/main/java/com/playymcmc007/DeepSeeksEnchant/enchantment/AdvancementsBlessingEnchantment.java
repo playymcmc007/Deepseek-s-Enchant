@@ -1,5 +1,6 @@
 package com.playymcmc007.DeepSeeksEnchant.enchantment;
 
+import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -63,6 +64,10 @@ public class AdvancementsBlessingEnchantment extends Enchantment {
     }
     @Override
     public void doPostAttack(LivingEntity attacker, Entity target, int level) {
+        if (!EnchantmentToggleConfig.ADVBLESSING_ENABLED.get()) {
+            super.doPostAttack(attacker, target, level);
+            return;
+        }
         if (!attacker.level().isClientSide() && attacker instanceof ServerPlayer player) {
             int completedAdvancements = getCompletedAdvancementsCount(player);
             float damageMultiplier = 1.0f + (level - 1 ) * 0.1f;

@@ -9,17 +9,16 @@ public class ChaosDamageConfig {
     private static ForgeConfigSpec configSpec;
 
     public static void init() {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+        BUILDER.translation("config.deepseeksenchant.chaos_damage")
+                .push("chaos_damage");
+        showDamageMessages = BUILDER.translation("config.deepseeksenchant.chaos_damage.showDamageMessages")
+                .comment(("The damage type dealt is displayed in the chat box."))
+                .define("showDamageMessages", true);
 
-        builder.comment("Chaos Damage Enchantment Settings")
-                .push("general");
 
-        showDamageMessages = builder
-                .comment("Whether to show damage type messages")
-                .define("showDamageMessages", false);
-
-        builder.pop();
-        configSpec = builder.build();
+        BUILDER.pop();
+        configSpec = BUILDER.build();
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, configSpec);
     }

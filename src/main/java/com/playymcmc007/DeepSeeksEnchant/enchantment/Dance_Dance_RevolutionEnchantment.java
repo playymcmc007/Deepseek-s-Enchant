@@ -1,8 +1,8 @@
 package com.playymcmc007.DeepSeeksEnchant.enchantment;
 
+import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.sounds.SoundEvent;
@@ -101,6 +101,10 @@ public class Dance_Dance_RevolutionEnchantment extends Enchantment {
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (!EnchantmentToggleConfig.DDR_ENABLED.get()) {
+            PLAYER_COMBOS.remove(event.player.getUUID());
+            return;
+        }
         if (event.phase != TickEvent.Phase.END || event.player.level().isClientSide) return;
 
         Player player = event.player;
@@ -141,6 +145,9 @@ public class Dance_Dance_RevolutionEnchantment extends Enchantment {
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public static void onKeyInput(InputEvent.Key event) {
+        if (!EnchantmentToggleConfig.DDR_ENABLED.get()) {
+            return;
+        }
         Minecraft minecraft = Minecraft.getInstance();
         if (minecraft.level == null || minecraft.player == null) return;
 
@@ -190,6 +197,9 @@ public class Dance_Dance_RevolutionEnchantment extends Enchantment {
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
+        if (!EnchantmentToggleConfig.DDR_ENABLED.get()) {
+            return;
+        }
         if (!(event.getSource().getDirectEntity() instanceof Player player)) return;
 
         DDRComboData combo = PLAYER_COMBOS.get(player.getUUID());

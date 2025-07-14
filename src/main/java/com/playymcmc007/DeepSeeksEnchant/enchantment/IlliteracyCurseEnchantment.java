@@ -31,6 +31,6 @@ public class IlliteracyCurseEnchantment extends Enchantment {
 
     @Override
     public int getMaxLevel() {
-        return 1; // 只有1级
+        return 1;
     }
 }

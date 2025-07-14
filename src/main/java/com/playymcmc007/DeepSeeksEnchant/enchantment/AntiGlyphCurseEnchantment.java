@@ -1,6 +1,6 @@
-// AntiGlyphCurseEnchantment.java
 package com.playymcmc007.DeepSeeksEnchant.enchantment;
 
+import com.playymcmc007.DeepSeeksEnchant.client.AntiGlyphStateHandler;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -15,7 +15,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = "deepseeksenchant", value = Dist.CLIENT)
 public class AntiGlyphCurseEnchantment extends Enchantment {
-    public static boolean enabled = false;
 
     public AntiGlyphCurseEnchantment() {
         super(Rarity.VERY_RARE, EnchantmentCategory.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST});
@@ -34,22 +33,24 @@ public class AntiGlyphCurseEnchantment extends Enchantment {
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END && event.player != null) {
-            enabled = EnchantmentHelper.getEnchantmentLevel(
+            boolean hasEnchant = EnchantmentHelper.getEnchantmentLevel(
                     ModEnchantments.ANTI_GLYPH.get(),
                     event.player
             ) > 0;
+            AntiGlyphStateHandler.updateState(hasEnchant);
         }
     }
 
     @SubscribeEvent
     public static void onClientDisconnect(ClientPlayerNetworkEvent.LoggingOut event) {
-        enabled = false;
+        AntiGlyphStateHandler.reset();
     }
 
     @SubscribeEvent
     public static void onDimensionChange(EntityTravelToDimensionEvent event) {
         if (event.getEntity() instanceof Player) {
-            enabled = false;
+            AntiGlyphStateHandler.reset();
         }
     }
+
 }

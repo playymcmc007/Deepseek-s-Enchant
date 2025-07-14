@@ -1,6 +1,7 @@
 package com.playymcmc007.DeepSeeksEnchant.enchantment;
 
 import com.playymcmc007.DeepSeeksEnchant.config.ChaosDamageConfig;
+import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -14,7 +15,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.enchantment.DamageEnchantment;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.Level;
@@ -108,6 +108,9 @@ public class PureChaosDamageEnchantment extends Enchantment {
     }
     @Override
     public void doPostAttack(LivingEntity attacker, Entity target, int enchantLevel) {
+        if (!EnchantmentToggleConfig.PURE_ENABLED.get()) {
+            return;
+        }
         if (!(target instanceof LivingEntity livingTarget)) return;
         if (attacker.level().isClientSide) return;
 

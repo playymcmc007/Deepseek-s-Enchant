@@ -1,5 +1,6 @@
 package com.playymcmc007.DeepSeeksEnchant.client;
 
+import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import com.playymcmc007.DeepSeeksEnchant.enchantment.ModEnchantments;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -21,7 +22,9 @@ public class IlliteracyEffectHandler {
     private static boolean isEffectActive = false;
 
     private static boolean hasIlliteracyCurse(Player player) {
-        if (player == null) return false;
+        if (player == null || !EnchantmentToggleConfig.ILLITERACY_ENABLED.get()) {
+            return false;
+        }
         ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
         return EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.ILLITERACY.get(), helmet) > 0;
     }
@@ -70,21 +73,23 @@ public class IlliteracyEffectHandler {
     //物品Tooltip
     @SubscribeEvent
     public static void onItemTooltip(ItemTooltipEvent event) {
-        if (isEffectActive) {
-            event.getToolTip().replaceAll(IlliteracyEffectHandler::obfuscateText);
+        if (!EnchantmentToggleConfig.ILLITERACY_ENABLED.get() || !isEffectActive) {
+            return;
         }
+        event.getToolTip().replaceAll(IlliteracyEffectHandler::obfuscateText);
     }
     //命名实体
     @SubscribeEvent
     public static void onRenderNameTag(RenderNameTagEvent event) {
-        if (isEffectActive) {
-            event.setContent(obfuscateText(event.getContent()));
+        if (!EnchantmentToggleConfig.ILLITERACY_ENABLED.get() || !isEffectActive) {
+            return;
         }
+        event.setContent(obfuscateText(event.getContent()));
     }
     //聊天框
     @SubscribeEvent
     public static void onChatMessage(ClientChatReceivedEvent event) {
-        if (isEffectActive) {
+        if (isEffectActive && EnchantmentToggleConfig.ILLITERACY_ENABLED.get()) {
             event.setMessage(obfuscateText(event.getMessage()));
         }
     }
@@ -93,13 +98,16 @@ public class IlliteracyEffectHandler {
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
-            isEffectActive = hasIlliteracyCurse(event.player);
+            // 只有配置启用时才更新效果状态
+            isEffectActive = EnchantmentToggleConfig.ILLITERACY_ENABLED.get()
+                    && hasIlliteracyCurse(event.player);
         }
     }
     //屏蔽快捷栏物品名字
     @SubscribeEvent
     public static void cancelItemNameRender(RenderGuiOverlayEvent.Pre event) {
-        if (isEffectActive && event.getOverlay() == VanillaGuiOverlay.ITEM_NAME.type()) {
+        if (isEffectActive && EnchantmentToggleConfig.ILLITERACY_ENABLED.get()
+                && event.getOverlay() == VanillaGuiOverlay.ITEM_NAME.type()) {
             event.setCanceled(true);
         }
     }

@@ -1,5 +1,6 @@
 package com.playymcmc007.DeepSeeksEnchant.enchantment;
 
+import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -61,6 +62,9 @@ public class Berserk_ChopEnchantment extends Enchantment {
 
     @SubscribeEvent
     public static void onPlayerAttack(AttackEntityEvent event) {
+        if (!EnchantmentToggleConfig.BERSERK_CHOP_ENABLED.get()) {
+            return;
+        }
         if (!(event.getEntity() instanceof Player) || !(event.getTarget() instanceof LivingEntity)) {
             return;
         }

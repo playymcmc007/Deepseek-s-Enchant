@@ -1,5 +1,6 @@
 package com.playymcmc007.DeepSeeksEnchant.enchantment;
 
+import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -53,6 +54,9 @@ public class GrenadierEnchantment extends Enchantment {
 
     @SubscribeEvent
     public static void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
+        if (!EnchantmentToggleConfig.GRENADIER_ENABLED.get()) {
+            return;
+        }
         Player player = event.getEntity();
         ItemStack chestplate = player.getItemBySlot(EquipmentSlot.CHEST);
         int level = chestplate.getEnchantmentLevel(ModEnchantments.GRENADIER.get());

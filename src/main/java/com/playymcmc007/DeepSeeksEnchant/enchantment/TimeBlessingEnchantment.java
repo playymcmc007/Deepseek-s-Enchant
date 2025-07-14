@@ -1,5 +1,6 @@
 package com.playymcmc007.DeepSeeksEnchant.enchantment;
 
+import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -61,6 +62,10 @@ public class TimeBlessingEnchantment extends Enchantment {
 
     @Override
     public void doPostAttack(LivingEntity attacker, Entity target, int level) {
+        if (!EnchantmentToggleConfig.TIMEBLESSING_ENABLED.get()) {
+            super.doPostAttack(attacker, target, level);
+            return;
+        }
         if (!attacker.level().isClientSide() && attacker.level() instanceof ServerLevel world) {
             long dayTime = world.getDayTime();
             long daysPassed = dayTime / 24000L;

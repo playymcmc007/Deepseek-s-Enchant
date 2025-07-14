@@ -1,5 +1,6 @@
 package com.playymcmc007.DeepSeeksEnchant.mixins;
 
+import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import com.playymcmc007.DeepSeeksEnchant.enchantment.ModEnchantments;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -20,6 +21,9 @@ public abstract class LivingEntityMixin {
     )
     //盾逻辑
     private void onIsDamageSourceBlocked(CallbackInfoReturnable<Boolean> cir) {
+        if (!EnchantmentToggleConfig.OMNIGUARD_ENABLED.get()) {
+            return;
+        }
         LivingEntity entity = (LivingEntity)(Object)this;
         ItemStack shield = entity.getUseItem();
 

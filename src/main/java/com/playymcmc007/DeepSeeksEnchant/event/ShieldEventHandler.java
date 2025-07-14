@@ -1,5 +1,6 @@
-package com.playymcmc007.DeepSeeksEnchant.event;
+package com.playymcmc007.DeepSeeksEnchant.events;
 
+import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import com.playymcmc007.DeepSeeksEnchant.enchantment.ModEnchantments;
 import com.playymcmc007.DeepSeeksEnchant.enchantment.OmniGuardEnchantment;
 import net.minecraft.world.damagesource.DamageSource;
@@ -15,7 +16,9 @@ public class ShieldEventHandler {
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
-        if (event.getEntity().isBlocking()) {
+        if (!EnchantmentToggleConfig.OMNIGUARD_ENABLED.get()) {
+            return;
+        }        if (event.getEntity().isBlocking()) {
             DamageSource source = event.getSource();
             if (source.is(DamageTypes.ARROW) ||
                     source.is(DamageTypes.TRIDENT) ||

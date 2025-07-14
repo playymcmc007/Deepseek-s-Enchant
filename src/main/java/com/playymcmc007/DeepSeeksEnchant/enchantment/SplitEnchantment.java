@@ -1,4 +1,6 @@
 package com.playymcmc007.DeepSeeksEnchant.enchantment;
+
+import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -44,6 +46,9 @@ public class SplitEnchantment extends Enchantment {
     }
     @Override
     public void doPostAttack(LivingEntity attacker, Entity target, int level) {
+        if (!EnchantmentToggleConfig.SPLIT_ENABLED.get()) {
+            return;
+        }
         if (!attacker.level().isClientSide && target instanceof LivingEntity livingTarget) {
             UUID playerId = attacker.getUUID();
             if (!PLAYER_TARGETS.containsKey(playerId)) {
@@ -67,6 +72,11 @@ public class SplitEnchantment extends Enchantment {
     }
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (!EnchantmentToggleConfig.SPLIT_ENABLED.get()) {
+            PLAYER_TARGETS.remove(event.player.getUUID());
+            PLAYER_TIMERS.remove(event.player.getUUID());
+            return;
+        }
         if (event.phase == TickEvent.Phase.END && !event.player.level().isClientSide) {
             UUID playerId = event.player.getUUID();
             if (PLAYER_TIMERS.containsKey(playerId)) {

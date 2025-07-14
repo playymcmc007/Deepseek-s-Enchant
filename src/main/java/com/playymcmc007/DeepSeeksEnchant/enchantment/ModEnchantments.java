@@ -43,4 +43,23 @@ public class ModEnchantments {
             StrangeNoisesCurseEnchantment::new);
     public static final RegistryObject<Enchantment> ANTI_GLYPH = ENCHANTMENTS.register("anti_glyph_curse",
             AntiGlyphCurseEnchantment::new);
+
+    public static final RegistryObject<Enchantment> ROBBERY = ENCHANTMENTS.register("robbery",
+            RobberyEnchantment::new);
+    public static final RegistryObject<Enchantment> GIANT_GROWTH = ENCHANTMENTS.register("giant_growth",
+            GiantGrowthEnchantment::new);
+    public static final RegistryObject<Enchantment> REGURGITATION = ENCHANTMENTS.register("regurgitation",
+            RegurgitationEnchantment::new);
+    public static final RegistryObject<Enchantment> DIMENSIONAL_LOCK = ENCHANTMENTS.register("dimensional_lock",
+            DimensionalLockEnchantment::new);
+    public static final RegistryObject<Enchantment> DEEPDARKSCALL = ENCHANTMENTS.register("deepdarkscall",
+            DeepdarksCallEnchantment::new);
+    public static final RegistryObject<Enchantment> LAND_SWIMMER = ENCHANTMENTS.register("land_swimmer",
+            LandSwimmerEnchantment::new);
+    public static final RegistryObject<Enchantment> ELDER_GUARDIAN_DISTURBANCE = ENCHANTMENTS.register("elder_guardian_disturbance",
+            ElderGuardianDisturbanceEnchantment::new);
+    public static final RegistryObject<Enchantment> DISGUISE_AND_DECEPTION = ENCHANTMENTS.register("disguise_and_deception_curse",
+            DisguiseAndDeceptionCurseEnchantment::new);
+    public static final RegistryObject<Enchantment> FRAGILE = ENCHANTMENTS.register("fragile",
+            FragileEnchantment::new);
 }
