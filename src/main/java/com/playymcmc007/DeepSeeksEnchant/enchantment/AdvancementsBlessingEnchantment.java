@@ -16,9 +16,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Collection;
 
 public class AdvancementsBlessingEnchantment extends Enchantment {
-    public static float calculateBonusDamage(int progress, int level) {
-        return (progress / 10.0f) * (1.0f + (level * 0.1f));
-    }
     public AdvancementsBlessingEnchantment() {
         super(Rarity.VERY_RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }

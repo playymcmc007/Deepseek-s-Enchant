@@ -45,8 +45,9 @@ public class FragileEnchantment extends Enchantment {
     }
 
     private static void processDurability(ItemStack stack, Player player, InteractionHand hand) {
-        if (stack.isEmpty() || !EnchantmentToggleConfig.FRAGILE_ENABLED.get()) return;
-
+        if (stack.isEmpty() || !EnchantmentToggleConfig.FRAGILE_ENABLED.get()) {
+            return;
+        }
         int currentDamage = getCurrentDamage(stack) + 1;
         setDamage(stack, currentDamage);
 

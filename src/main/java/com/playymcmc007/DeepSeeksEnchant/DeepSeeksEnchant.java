@@ -40,7 +40,6 @@ public class DeepSeeksEnchant {
         FEATURES.register(modEventBus);
         ModEffects.EFFECTS.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(RegurgitationHandler.class);
         ModItems.ITEMS.register(modEventBus);
         NetworkHandler.register();
         EnchantmentToggleConfig.init();

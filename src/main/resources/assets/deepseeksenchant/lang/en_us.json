@@ -19,8 +19,6 @@
 	"enchantment.deepseeksenchant.mod_blessing.desc": "Increases attack damage based on installed mods.§r",
 	"enchantment.deepseeksenchant.time_blessing": "Time Blessing",
 	"enchantment.deepseeksenchant.time_blessing.desc": "Increases attack damage based on the number of daylight cycles.§r",
-	"enchantment.deepseeksenchant.biome_blessing": "Biome Blessing",
-	"enchantment.deepseeksenchant.biome_blessing.desc": "Increases health based on the number of different biomes visited.§r",
 	"enchantment.deepseeksenchant.grenadier": "Grenadier",
 	"enchantment.deepseeksenchant.grenadier.desc": "Allows throwing TNT and Fire Charges as projectiles.§r",
 	"enchantment.deepseeksenchant.blood_feeding": "Blood Feeding",
@@ -53,6 +51,10 @@
 	"enchantment.deepseeksenchant.disguise_and_deception_curse.desc": "Abandoned enchantment, remove all NBT tag and change the name when the item's durability is not satisfied.§r",
 	"enchantment.deepseeksenchant.fragile": "Fragile",
 	"enchantment.deepseeksenchant.fragile.desc": "Makes any item without durability 500 points of durability.§r",
+	"enchantment.deepseeksenchant.broken_arrow": "Broken Arrow",
+	"enchantment.deepseeksenchant.broken_arrow.desc": "Probability of launch failure. (no arrow return)",
+	"enchantment.deepseeksenchant.lure_mob": "Lure Mob Into Boat",
+	"enchantment.deepseeksenchant.lure_mob.desc": "Pulls non-player mobs onto the boat.§r",
 
 	"command.deepseeksenchant.chaosdamage.messages.on": "§aChaos damage messages enabled",
 	"command.deepseeksenchant.chaosdamage.messages.off": "§cChaos damage messages disabled",
@@ -130,6 +132,8 @@
 	"config.deepseeksenchant.enchantments.elder_guardian_disturbance_enabled": "Elder Guardian's Disturbance Enchantment",
 	"config.deepseeksenchant.enchantments.disguise_and_deception_enabled": "Disguise and Deception Curse",
 	"config.deepseeksenchant.enchantments.fragile_enabled": "Fragile Enchantment",
+	"config.deepseeksenchant.enchantments.broken_arrow_enabled": "Broken Arrow Curse",
+	"config.deepseeksenchant.enchantments.lure_mob_enabled": "Lure Mob Into Boat",
 	"config.deepseeksenchant.chaos_damage": "Chaos Damage Settings",
 	"config.deepseeksenchant.chaos_damage.showDamageMessages": "Show Damage Messages"
 }

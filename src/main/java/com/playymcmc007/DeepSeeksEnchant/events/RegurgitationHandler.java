@@ -24,8 +24,9 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = "deepseeksenchant")
 public class RegurgitationHandler {
     private static final SoundEvent REGURGITATE_SOUND =
             SoundEvent.createVariableRangeEvent(
@@ -53,10 +54,10 @@ public class RegurgitationHandler {
 
                 if (history.size() < maxStorage) {
                     CompoundTag foodTag = new CompoundTag();
-                    event.getItem().save(foodTag);
+                    foodTag.putString("id", ForgeRegistries.ITEMS.getKey(event.getItem().getItem()).toString());
+                    foodTag.putInt("Count", event.getItem().getCount());
                     history.add(foodTag);
                     tag.put(FOOD_HISTORY_KEY, history);
-                    chestArmor.setTag(tag);
                 }
             }
         }
@@ -184,32 +185,28 @@ public class RegurgitationHandler {
             if (originalFood.isEmpty()) {
                 originalFood = regurgitatedFood; // 回退使用反刍食物本身
             }
-            for (int i = 0; i < 20; i++) {
                 serverLevel.sendParticles(
                         new ItemParticleOption(ParticleTypes.ITEM, originalFood),
                         mouthPos.x,
                         mouthPos.y,
                         mouthPos.z,
-                        5, // 每组5个粒子
+                        20, // 一次性20个粒子
                         0.2, // x扩散范围
                         0.1, // y扩散范围
                         0.2, // z扩散范围
                         0 // 基础速度
                 );
-
-
                 serverLevel.sendParticles(
                         new ItemParticleOption(ParticleTypes.ITEM, regurgitatedFood),
                         mouthPos.x,
                         mouthPos.y,
                         mouthPos.z,
-                        5, // 每组5个粒子
+                        20, // 一次性20个粒子
                         0.2, // x扩散范围
                         0.1, // y扩散范围
                         0.2, // z扩散范围
                         0 // 基础速度
                 );
-            }
         }
     }
 }

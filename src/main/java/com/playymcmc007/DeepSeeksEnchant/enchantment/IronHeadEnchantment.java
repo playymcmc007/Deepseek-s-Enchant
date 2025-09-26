@@ -17,6 +17,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 public class IronHeadEnchantment extends Enchantment {
+    private static final AABB HEAD_AABB_TEMPLATE = new AABB(-0.3, -0.2, -0.3, 0.3, 0.2, 0.3);
     public IronHeadEnchantment() {
         super(Rarity.UNCOMMON, EnchantmentCategory.ARMOR_HEAD, new EquipmentSlot[]{EquipmentSlot.HEAD});
     }
@@ -61,14 +62,7 @@ public class IronHeadEnchantment extends Enchantment {
                 return;
             }
 
-            AABB headAABB = new AABB(
-                    player.getX() - 0.3,
-                    player.getY() + player.getEyeHeight() - 0.2,
-                    player.getZ() - 0.3,
-                    player.getX() + 0.3,
-                    player.getY() + player.getEyeHeight() + 0.2,
-                    player.getZ() + 0.3
-            );
+            AABB headAABB = HEAD_AABB_TEMPLATE.move(player.getX(), player.getY() + player.getEyeHeight(), player.getZ());
 
             boolean isColliding = !targetState.getCollisionShape(world, targetPos).isEmpty() &&
                     headAABB.intersects(new AABB(targetPos));

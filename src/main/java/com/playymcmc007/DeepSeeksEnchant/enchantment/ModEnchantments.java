@@ -62,4 +62,8 @@ public class ModEnchantments {
             DisguiseAndDeceptionCurseEnchantment::new);
     public static final RegistryObject<Enchantment> FRAGILE = ENCHANTMENTS.register("fragile",
             FragileEnchantment::new);
+    public static final RegistryObject<Enchantment> BROKEN_ARROW = ENCHANTMENTS.register("broken_arrow",
+            BrokenArrowEnchantment::new);
+    public static final RegistryObject<Enchantment> LURE_MOB = ENCHANTMENTS.register("lure_mob",
+            LureMobEnchantment::new);
 }

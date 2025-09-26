@@ -19,8 +19,6 @@
 	"enchantment.deepseeksenchant.mod_blessing.desc": "根据模组数量提升攻击力。§r",
 	"enchantment.deepseeksenchant.time_blessing": "时间的赐福",
 	"enchantment.deepseeksenchant.time_blessing.desc": "根据昼夜更替的天数提升攻击力。§r",
-	"enchantment.deepseeksenchant.biome_blessing": "群系的赐福",
-	"enchantment.deepseeksenchant.biome_blessing.desc": "根据经过的生物群系数量提升生命值。§r",
 	"enchantment.deepseeksenchant.grenadier": "掷弹兵",
 	"enchantment.deepseeksenchant.grenadier.desc": "可将TNT和火焰弹作为投掷物抛出去。§r",
 	"enchantment.deepseeksenchant.blood_feeding": "血饲",
@@ -53,6 +51,10 @@
 	"enchantment.deepseeksenchant.disguise_and_deception_curse.desc": "废弃附魔书，当物品耐久度不满时移除所有NBT标签并改名。§r",
 	"enchantment.deepseeksenchant.fragile": "脆弱",
 	"enchantment.deepseeksenchant.fragile.desc": "使没有耐久的任意物品拥有500点耐久。§r",
+	"enchantment.deepseeksenchant.broken_arrow": "断矢",
+	"enchantment.deepseeksenchant.broken_arrow.desc": "有概率发射失败。（不返还箭矢）§r",
+	"enchantment.deepseeksenchant.lure_mob": "诱敌入船",
+	"enchantment.deepseeksenchant.lure_mob.desc": "把非玩家生物拉到船上。§r",
 
 	"command.deepseeksenchant.chaosdamage.messages.on": "§a已开启混沌伤害消息显示",
 	"command.deepseeksenchant.chaosdamage.messages.off": "§c已关闭混沌伤害消息显示",
@@ -130,6 +132,8 @@
 	"config.deepseeksenchant.enchantments.elder_guardian_disturbance_enabled": "远古守卫者的干扰附魔",
 	"config.deepseeksenchant.enchantments.disguise_and_deception_enabled": "伪装与欺骗诅咒",
 	"config.deepseeksenchant.enchantments.fragile_enabled": "脆弱附魔",
+	"config.deepseeksenchant.enchantments.broken_arrow_enabled": "断矢诅咒",
+	"config.deepseeksenchant.enchantments.lure_mob_enabled": "诱敌入船",
 	"config.deepseeksenchant.chaos_damage": "混沌伤害设置",
 	"config.deepseeksenchant.chaos_damage.showDamageMessages": "显示伤害消息"
 }

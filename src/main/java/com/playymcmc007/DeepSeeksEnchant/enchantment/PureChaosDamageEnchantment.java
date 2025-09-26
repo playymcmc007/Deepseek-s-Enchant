@@ -99,7 +99,6 @@ public class PureChaosDamageEnchantment extends Enchantment {
     @Override
     protected boolean checkCompatibility(Enchantment other) {
         if (other.equals(new ResourceLocation("deepseeksenchant", "snipe"))
-        || other.equals(new ResourceLocation("deepseeksenchant", "chaos_damage"))
         || other.equals(new ResourceLocation("deepseeksenchant", "chaos_damage")
         )) {
             return false;

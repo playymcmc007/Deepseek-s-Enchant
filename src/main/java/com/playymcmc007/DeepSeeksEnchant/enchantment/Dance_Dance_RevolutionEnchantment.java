@@ -26,7 +26,7 @@ import java.util.*;
 
 @Mod.EventBusSubscriber
 public class Dance_Dance_RevolutionEnchantment extends Enchantment {
-    private static final Map<UUID, DDRComboData> PLAYER_COMBOS = new HashMap<>();
+    private static final Map<UUID, DDRComboData> PLAYER_COMBOS = new WeakHashMap<>();
     private static final int BASE_TICKS = 60;
     private static final int TICK_DECREMENT = 5;
 

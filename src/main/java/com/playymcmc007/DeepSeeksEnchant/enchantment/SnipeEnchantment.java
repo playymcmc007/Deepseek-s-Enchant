@@ -53,7 +53,8 @@ public class SnipeEnchantment extends Enchantment {
     @Override
     protected boolean checkCompatibility(Enchantment other) {
         ResourceLocation otherId = ForgeRegistries.ENCHANTMENTS.getKey(other);
-        if (otherId.equals(new ResourceLocation("deepseeksenchant", "chaos_damage"))) {
+        if (otherId.equals(new ResourceLocation("deepseeksenchant", "chaos_damage"))
+                || other.equals(new ResourceLocation("deepseeksenchant", "pure_chaos_damage"))) {
             return false;
         }
         if (other instanceof DamageEnchantment) {

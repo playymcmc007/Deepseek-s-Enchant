@@ -36,6 +36,8 @@ public class EnchantmentToggleConfig {
     public static ForgeConfigSpec.BooleanValue ELDER_GUARDIAN_DISTURBANCE_ENABLED;
     public static ForgeConfigSpec.BooleanValue DISGUISE_AND_DECEPTION_ENABLED;
     public static ForgeConfigSpec.BooleanValue FRAGILE_ENABLED;
+    public static ForgeConfigSpec.BooleanValue BROKEN_ARROW_ENABLED;
+    public static ForgeConfigSpec.BooleanValue LURE_MOD_ENABLED;
 
     static {
         BUILDER.translation("config.deepseeksenchant.enchantments").push("enchantments");
@@ -117,6 +119,12 @@ public class EnchantmentToggleConfig {
 
         FRAGILE_ENABLED = BUILDER.translation("config.deepseeksenchant.enchantments.fragile_enabled")
                 .define("fragile_enabled", false);
+
+        BROKEN_ARROW_ENABLED = BUILDER.translation("config.deepseeksenchant.enchantments.broken_arrow_enabled")
+                .define("broken_arrow_enabled", true);
+
+        LURE_MOD_ENABLED = BUILDER.translation("config.deepseeksenchant.enchantments.lure_mod_enabled")
+                .define("lure_mod_enabled", true);
         BUILDER.pop();
         SPEC = BUILDER.build();
     }
@@ -154,6 +162,8 @@ public class EnchantmentToggleConfig {
             case "elder_guardian_disturbance" -> ELDER_GUARDIAN_DISTURBANCE_ENABLED.get();
             case "disguise_and_deception_curse" -> DISGUISE_AND_DECEPTION_ENABLED.get();
             case "fragile" -> FRAGILE_ENABLED.get();
+            case "broken_arrow" -> BROKEN_ARROW_ENABLED.get();
+            case "lure_mod" -> LURE_MOD_ENABLED.get();
             default -> true;
         };
     }

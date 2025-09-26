@@ -2,6 +2,7 @@ package com.playymcmc007.DeepSeeksEnchant.client;
 
 import com.playymcmc007.DeepSeeksEnchant.config.EnchantmentToggleConfig;
 import com.playymcmc007.DeepSeeksEnchant.enchantment.ModEnchantments;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -19,7 +20,6 @@ import java.util.Random;
 @Mod.EventBusSubscriber(modid = "deepseeksenchant", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class IlliteracyEffectHandler {
     private static final Random RANDOM = new Random();
-    private static boolean isEffectActive = false;
 
     private static boolean hasIlliteracyCurse(Player player) {
         if (player == null || !EnchantmentToggleConfig.ILLITERACY_ENABLED.get()) {
@@ -73,7 +73,8 @@ public class IlliteracyEffectHandler {
     //物品Tooltip
     @SubscribeEvent
     public static void onItemTooltip(ItemTooltipEvent event) {
-        if (!EnchantmentToggleConfig.ILLITERACY_ENABLED.get() || !isEffectActive) {
+        Player player = Minecraft.getInstance().player;
+        if (!EnchantmentToggleConfig.ILLITERACY_ENABLED.get() || !hasIlliteracyCurse(player)) {
             return;
         }
         event.getToolTip().replaceAll(IlliteracyEffectHandler::obfuscateText);
@@ -81,7 +82,8 @@ public class IlliteracyEffectHandler {
     //命名实体
     @SubscribeEvent
     public static void onRenderNameTag(RenderNameTagEvent event) {
-        if (!EnchantmentToggleConfig.ILLITERACY_ENABLED.get() || !isEffectActive) {
+        Player player = Minecraft.getInstance().player;
+        if (!EnchantmentToggleConfig.ILLITERACY_ENABLED.get() || !hasIlliteracyCurse(player)) {
             return;
         }
         event.setContent(obfuscateText(event.getContent()));
@@ -89,24 +91,17 @@ public class IlliteracyEffectHandler {
     //聊天框
     @SubscribeEvent
     public static void onChatMessage(ClientChatReceivedEvent event) {
-        if (isEffectActive && EnchantmentToggleConfig.ILLITERACY_ENABLED.get()) {
+        Player player = Minecraft.getInstance().player;
+        if (hasIlliteracyCurse(player) && EnchantmentToggleConfig.ILLITERACY_ENABLED.get()) {
             event.setMessage(obfuscateText(event.getMessage()));
         }
     }
 
-    //生效
-    @SubscribeEvent
-    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase == TickEvent.Phase.END) {
-            // 只有配置启用时才更新效果状态
-            isEffectActive = EnchantmentToggleConfig.ILLITERACY_ENABLED.get()
-                    && hasIlliteracyCurse(event.player);
-        }
-    }
     //屏蔽快捷栏物品名字
     @SubscribeEvent
     public static void cancelItemNameRender(RenderGuiOverlayEvent.Pre event) {
-        if (isEffectActive && EnchantmentToggleConfig.ILLITERACY_ENABLED.get()
+        Player player = Minecraft.getInstance().player;
+        if (hasIlliteracyCurse(player) && EnchantmentToggleConfig.ILLITERACY_ENABLED.get()
                 && event.getOverlay() == VanillaGuiOverlay.ITEM_NAME.type()) {
             event.setCanceled(true);
         }

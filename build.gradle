@@ -5,10 +5,10 @@ plugins {
     id 'org.spongepowered.mixin' version '0.7.+'
 }
 
-version = '1.1.0'
+version = '1.2.0'
 group = 'com.playymcmc007.DeepSeeksEnchant'
 archivesBaseName = 'DeepSeeksEnchant'
-
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_21
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)

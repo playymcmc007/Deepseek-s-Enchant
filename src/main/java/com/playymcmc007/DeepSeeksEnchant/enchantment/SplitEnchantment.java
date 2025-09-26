@@ -14,8 +14,8 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.*;
 @Mod.EventBusSubscriber
 public class SplitEnchantment extends Enchantment {
-    private static final Map<UUID, List<SplitTarget>> PLAYER_TARGETS = new HashMap<>();
-    private static final Map<UUID, Integer> PLAYER_TIMERS = new HashMap<>();
+    private static final Map<UUID, List<SplitTarget>> PLAYER_TARGETS = new WeakHashMap<>();
+    private static final Map<UUID, Integer> PLAYER_TIMERS = new WeakHashMap<>();
     public SplitEnchantment() {
         super(Rarity.VERY_RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
     }
